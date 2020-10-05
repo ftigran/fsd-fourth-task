@@ -1,5 +1,5 @@
 .container {
-  width: 266px;
+  width: 500px;
   border: 1px solid cyan;
   padding: 10px;
 }
@@ -14,11 +14,11 @@
   }
 
   &__border {
-    width: 266px;
     border: 1px solid rgba(31, 32, 65, 0.25);
     box-sizing: border-box;
     border-radius: 3px;
     background-color: #fff;
+    //margin: 0 4px
   }
 
   &__progress-bar {
@@ -26,13 +26,14 @@
     height: 6px;
     background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
     width: 120px;
+    left: 0px;
   }
 
   &__from,
   &__to {
-    width: 12px;
+    width: 1px;
     height: 12px;
-    border: 2px solid #ffffff;
+    //border: 2px solid #ffffff;
     border-radius: 50%;
     transition: box-shadow 0.25s ease-out;
     box-sizing: content-box;
@@ -43,24 +44,25 @@
     top: -5px;
 
     &:hover {
-      background: linear-gradient(
+      /*background: linear-gradient(
         180deg,
         lighten(#6fcf97, 12.5%) 0%,
         lighten(#66d2ea, 12.5%) 100%
       );
-      box-shadow: 0px 0px 3px 3px #6fcf97;
+      box-shadow: 0px 0px 3px 3px #6fcf97;*/
     }
   }
   &__from {
-    left: -6px;
+    left: 0px;
   }
   &__to {
-    right: -6px;
+    right: 0px;
   }
   &__now-value {
     position: absolute;
     top: -25px;
-    left: -50%;
+    //left: 0;
+    
     //min-width: 100%;
     white-space: nowrap;
     background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
