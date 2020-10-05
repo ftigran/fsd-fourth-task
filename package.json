@@ -48,5 +48,8 @@
     "webpack-merge": "^5.1.2",
     "webpack-dev-server": "^3.11.0"
   },
-  "homepage": "https://github.com/ftigran/fsd-fourth-task#readme"
+  "homepage": "https://github.com/ftigran/fsd-fourth-task#readme",
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
 }
