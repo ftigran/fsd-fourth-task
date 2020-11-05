@@ -1,6 +1,13 @@
 import './index.scss'
 'use strict';
-
+let params = {
+    minVal: 1000,
+    maxVal:5000,
+    step: 100,
+    isGorizontal: true,
+    isInterval: true,
+    isShowVal: true,
+}
 /*
 Добавить:
 мининимально, максимального и текущего значения
@@ -57,18 +64,19 @@ let view = {
 };
 
 view.createElements(document.querySelector('.range-here'), 5000, 10000, '₽');
-console.log('sdds')
 
 
 let rangeTo = document.querySelector('.range__to');
+let rangeToValNow=rangeTo.querySelector('.range__now-value')
+console.log(rangeToValNow)
 let bar = document.querySelector('.range__progress-bar');
 let slider=document.querySelector('.range__border');
 let shiftX;
-
+//let minVal=100;
+//let maxVal=200;
 rangeTo.onpointerdown = function(event) {
     event.preventDefault(); // prevent selection start (browser action)
     shiftX = event.clientX - rangeTo.getBoundingClientRect().left;
-
     rangeTo.setPointerCapture(event.pointerId);
   };
   rangeTo.onpointermove = function(event) {
@@ -83,6 +91,8 @@ rangeTo.onpointerdown = function(event) {
     }
 
     bar.style.width = newWidth + 'px';
+    
+    rangeToValNow.innerHTML=Math.ceil(newWidth/slider.offsetWidth*(params.maxVal-params.minVal)/params.step)*params.step+params.minVal;
   };
 
   rangeTo.ondragstart = () => false;
