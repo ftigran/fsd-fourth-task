@@ -1,4 +1,8 @@
 import './index.scss'
+import '../modules/view/view.js'
+import '../modules/model/model.js'
+import '../modules/controller/controller.js'
+
 'use strict';
 let params = {
     minVal: 1000,
@@ -20,51 +24,25 @@ let params = {
 Шкала должна быть интерактивной. Т.е. при клике на значение шкалы, ползунок должен перемещаться на позицию этого значения.
 прогресс бар - элемент от min до значения первого ползунка, при одиночном значении, либо, от значения первого ползунка до значения второго ползунка при интервале. Узнать как выглядит прогресс бар (разноцветные полоски)
  */
-let view = {
-    createElements: function(elem,rangeValueFrom,rangeValueTo, units){
-        let rangeSlider = document.createElement('div');
-        rangeSlider.className = 'range';
-        let rangeValue = document.createElement('p');
-        rangeValue.className = 'range__value';
-        rangeValue.innerHTML=rangeValueFrom+units+' - ' + rangeValueTo+units;
-        rangeSlider.append(rangeValue);
+let firstSlider = new View({
+    elem: document.querySelector('.range-here'),
+    minVal: 2000,
+    maxVal:10000,
+    toVal:3000,
+    fromVal:4500,
+    step: 100,
+    isGorizontal: true,
+    isInterval: true,
+    isShowVal: true,
+});
+//firstSlider.createElements(document.querySelector('.range-here'), 5000, 10000, '₽');
 
-
-        let rangeRange = document.createElement('div');
-        rangeRange.className = 'range__range';
-
-        let rangeBorder = document.createElement('div');
-        rangeBorder.className = 'range__border';
-
-        let rangeProgressBar = document.createElement('div');
-        rangeProgressBar.className = 'range__progress-bar';
-
-        let rangeFrom = document.createElement('div');
-        rangeFrom.className = 'range__from';
-
-        let rangeFromNov = document.createElement('span');
-        rangeFromNov.className = 'range__now-value';
-        rangeFromNov.innerHTML  = rangeValueFrom+units;
-        rangeFrom.append(rangeFromNov);
-
-        let rangeTo = document.createElement('div');
-        rangeTo.className = 'range__to';
-
-        let rangeToNov = document.createElement('span');
-        rangeToNov.className = 'range__now-value';
-        rangeToNov.innerHTML=rangeValueTo+units;
-        rangeTo.append(rangeToNov);
-
-        rangeProgressBar.append(rangeFrom,rangeTo)
-        rangeBorder.append(rangeProgressBar)
-        rangeRange.append(rangeBorder)
-        rangeSlider.append(rangeRange)
-        elem.append(rangeSlider);
-    }
+/*let view = {
+    
 };
 
 view.createElements(document.querySelector('.range-here'), 5000, 10000, '₽');
-
+*/
 
 let rangeTo = document.querySelector('.range__to');
 let rangeToValNow=rangeTo.querySelector('.range__now-value')
