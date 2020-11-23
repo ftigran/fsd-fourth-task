@@ -1,7 +1,6 @@
 import './index.scss'
-import '../modules/view/view.js'
-import '../modules/model/model.js'
-import '../modules/controller/controller.js'
+
+import {Controller} from '../modules/controller/controller.js'
 
 'use strict';
 let params = {
@@ -24,17 +23,19 @@ let params = {
 Шкала должна быть интерактивной. Т.е. при клике на значение шкалы, ползунок должен перемещаться на позицию этого значения.
 прогресс бар - элемент от min до значения первого ползунка, при одиночном значении, либо, от значения первого ползунка до значения второго ползунка при интервале. Узнать как выглядит прогресс бар (разноцветные полоски)
  */
-let firstSlider = new View({
-    elem: document.querySelector('.range-here'),
+let firstSlider = new Controller({
+    rangeContainer: 'range-1',
     minVal: 2000,
     maxVal:10000,
-    toVal:3000,
+    toVal:7000,
     fromVal:4500,
     step: 100,
     isGorizontal: true,
     isInterval: true,
     isShowVal: true,
 });
+let secondSlider = new Controller();
+
 //firstSlider.createElements(document.querySelector('.range-here'), 5000, 10000, '₽');
 
 /*let view = {
@@ -44,6 +45,10 @@ let firstSlider = new View({
 view.createElements(document.querySelector('.range-here'), 5000, 10000, '₽');
 */
 
+
+
+
+/*
 let rangeTo = document.querySelector('.range__to');
 let rangeToValNow=rangeTo.querySelector('.range__now-value')
 console.log(rangeToValNow)
@@ -74,10 +79,5 @@ rangeTo.onpointerdown = function(event) {
   };
 
   rangeTo.ondragstart = () => false;
+*/
 
-let model={
-
-}
-let controller={
-
-}
