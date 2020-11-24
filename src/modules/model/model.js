@@ -5,7 +5,7 @@ export class Model {
         toVal=maxVal,
         fromVal=minVal,
         step= 100,
-        units='₽',
+        units=' ₽',
         isGorizontal= true,
         isInterval= true,
         isShowVal= true,
@@ -19,5 +19,26 @@ export class Model {
         this.isGorizontal= isGorizontal;
         this.isInterval= isInterval;
         this.isShowVal= isShowVal;
+    }
+    get toVal(){
+        return this._toVal
+    }
+    get fromVal(){
+        return this._fromVal
+    }
+    set toVal(arg){
+        this._toVal=arg;
+    }
+    set fromVal(arg){
+        this._fromVal=arg;
+    }
+    getRange(){
+        return this.fromVal+this.units+' - ' + this.toVal+this.units
+    }
+    getRangeNow(ValNow){
+        return ValNow+this.units
+    }
+    changeValue(){
+
     }
   }

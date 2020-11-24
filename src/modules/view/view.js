@@ -1,8 +1,8 @@
 
 export class View {
     constructor({
-        rangeContainer = 'range-here',
-        minVal= 100,
+        rangeContainer = '.range-here',
+        /*minVal= 100,
         maxVal=500,
         toVal=maxVal,
         fromVal=minVal,
@@ -10,10 +10,10 @@ export class View {
         units='₽',
         isGorizontal= true,
         isInterval= true,
-        isShowVal= true,
+        isShowVal= true,*/
     }={}){
         this.rangeContainer=rangeContainer;
-        this.minVal = minVal;
+        /*this.minVal = minVal;
         this.maxVal=maxVal;
         this.toVal=toVal;
         this.fromVal=fromVal;
@@ -21,14 +21,13 @@ export class View {
         this.units= units;
         this.isGorizontal= isGorizontal;
         this.isInterval= isInterval;
-        this.isShowVal= isShowVal;
+        this.isShowVal= isShowVal;*/
         //контейнер для бегунка
         this.container = this.getElement(this.rangeContainer)
-        console.log('das')
+        console.log(this)
         console.log(this.container+'dsasadasd')
         this.rangeSlider = this.createElement('div', 'range');
         this.rangeValue = this.createElement('p','range__value');
-        this.rangeValue.innerHTML=this.fromVal+this.units+' - ' + this.toVal+this.units;
         this.rangeSlider.append(this.rangeValue);
 
 
@@ -40,21 +39,20 @@ export class View {
 
         this.rangeFrom = this.createElement('div','range__from');
 
-        this.rangeFromNov = this.createElement('span','range__now-value');
-        this.rangeFromNov.innerHTML  = this.fromVal+this.units;
-        this.rangeFrom.append(this.rangeFromNov);
+        this.rangeFromNow = this.createElement('span','range__now-value');
+        this.rangeFrom.append(this.rangeFromNow);
 
         this.rangeTo = this.createElement('div', 'range__to');
 
-        this.rangeToNov = this.createElement('span', 'range__now-value');
-        this.rangeToNov.innerHTML=this.toVal+this.units;
-        this.rangeTo.append(this.rangeToNov);
+        this.rangeToNow = this.createElement('span', 'range__now-value');
+        //this.rangeToNow.innerHTML=this.toVal+this.units;
+        this.rangeTo.append(this.rangeToNow);
 
         this.rangeProgressBar.append(this.rangeFrom,this.rangeTo)
         this.rangeBorder.append(this.rangeProgressBar)
         this.rangeRange.append(this.rangeBorder)
         this.rangeSlider.append(this.rangeRange)
-        //this.container.append(this.rangeSlider);
+        this.container.append(this.rangeSlider);
 
         //this.createElements()
     }
@@ -71,7 +69,12 @@ export class View {
     
         return element
       }
-      displayRange(){
+      displayRange(text){
+        this.rangeValue.innerHTML=text;
+      }
+      displayRangeNow(rangeNow, text){
+        rangeNow.innerHTML  = text;
+        
 
       }
 }

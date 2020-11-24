@@ -3,7 +3,9 @@
   border: 1px solid cyan;
   padding: 10px;
 }
-
+.range-1{
+  margin-left: 50px;
+}
 .range {
   &__value {
     text-align: end;
@@ -14,10 +16,11 @@
   }
 
   &__border {
-    border: 1px solid rgba(31, 32, 65, 0.25);
-    box-sizing: border-box;
+    border: 15px solid rgba(31, 32, 65, 0.25);
+    box-sizing: content-box;
     border-radius: 3px;
     background-color: #fff;
+    width: 200px;
     //margin: 0 4px
   }
 
@@ -31,14 +34,14 @@
 
   &__from,
   &__to {
-    width: 1px;
+    width: 20px;
     height: 12px;
     //border: 2px solid #ffffff;
-    border-radius: 50%;
+    //border-radius: 50%;
     transition: box-shadow 0.25s ease-out;
-    box-sizing: content-box;
+    box-sizing: border-box;
     z-index: 1;
-    background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
+    background: rgba($color: #0e65e956, $alpha: 0.2); //linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
     cursor: pointer;
     position: absolute;
     top: -5px;
@@ -69,96 +72,4 @@
     border-radius: 4px;
     border: 1px solid rgba(31, 32, 65, 0.25);
   }
-}
-
-//**/@at-root
-*,
-*::before,
-*::after {
-  box-sizing: border-box
-}
-
-html {
-  font-family: sans-serif;
-  font-size: 1rem;
-  color: #444;
-}
-
-#root {
-  max-width: 450px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-form {
-  display: flex;
-  margin-bottom: 2rem;
-}
-
-[type="text"],
-button {
-  display: inline-block;
-  -webkit-appearance: none;
-  padding: .5rem 1rem;
-  font-size: 1rem;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-}
-
-button {
-  cursor: pointer;
-  background: #007bff;
-  color: white;
-  border: 2px solid #007bff;
-  margin: 0 .5rem;
-}
-
-[type="text"] {
-  width: 100%;
-}
-
-[type="text"]:active,
-[type="text"]:focus {
-  outline: 0;
-  border: 2px solid #007bff;
-}
-
-[type="checkbox"] {
-  margin-right: 1rem;
-  font-size: 2rem;
-}
-
-h1 {
-  color: #222;
-}
-
-ul {
-  padding: 0;
-}
-
-li {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background: #f4f4f4;
-  border-radius: 4px;
-}
-
-li span {
-  display: inline-block;
-  padding: .5rem;
-  width: 250px;
-  border-radius: 4px;
-  border: 2px solid transparent;
-}
-
-li span:hover {
-  background: rgba(179, 215, 255, 0.52);
-}
-
-li span:focus {
-  outline: 0;
-  border: 2px solid #007bff;
-  background: rgba(179, 207, 255, 0.52)
 }
