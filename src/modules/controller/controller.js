@@ -17,15 +17,16 @@ export class Controller {
       this.model = new Model(arguments[0])
       this.view = new View(arguments[0])
       this.view.setStepWidth(this.model.minVal,this.model.maxVal,this.model.step)
-      this.bindChangeRangeTo()
-      this.view.bindRangeToMove(this.model.calcRangeToValue.bind(this.model),this.view.displayRange.bind(this.view))
-      this.view.bindRangeFromMove(this.model.calcRangeToValue.bind(this.model),this.view.displayRange.bind(this.view))
+      this.view.bindRangeToMove(this.model.calcRangeValue.bind(this.model),this.view.displayRange.bind(this.view), 'toVal')
+      this.view.bindRangeFromMove(this.model.calcRangeValue.bind(this.model),this.view.displayRange.bind(this.view),'fromVal')
 
       //Подписка на обновление значения "ToVal"
       this.model.toValUpdated.attach(()=>this.view.updateRangeTo(this.model.getRangeTo()))
       this.model.toValUpdated.attach(()=>this.view.displayRange(this.model.getRange()))
-
-
+  
+      //Подписка на обновление значения "fromVal"
+      this.model.fromValUpdated.attach(()=>this.view.updateRangeFrom(this.model.getRangeFrom()))
+      this.model.fromValUpdated.attach(()=>this.view.displayRange(this.model.getRange()))
 
       this.init();
 
@@ -33,6 +34,7 @@ export class Controller {
     }
     init(){
       this.model.toVal=this.model.toVal
+      this.model.fromVal=this.model.fromVal
         //this.view.displayRange(this.model.getRange())
         //this.updateRange(this.view.rangeFromNow,this.model.fromVal);
         //this.updateRange(this.view.rangeToNow,this.model.toVal);
@@ -43,19 +45,4 @@ export class Controller {
         this.view.displayRangeNow(rangeNow, this.model.getRangeTo())
         this.view.displayRange(this.model.getRange())
     }*/
-
-    bindChangeRangeTo(){
-        let shiftX;
-        this.view.rangeTo.onpointerdown = function(event) {
-          this.eventOfRangeTo=event;
-            event.preventDefault();
-            shiftX = event.pageX - this.getBoundingClientRect().left-(this.clientWidth/2);
-            this.setPointerCapture(event.pointerId);
-            console.log(this.eventOfRangeTo.pointerId)
-          };
-          this.view.rangeTo.onpointerup = function(event) {
-              this.releasePointerCapture(event.pointerId);
-              console.log(event.pointerId)
-            };
-    }
   }

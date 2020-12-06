@@ -76,6 +76,9 @@ export class View {
       updateRangeTo(text){
         this.displayRangeNow(this.rangeToNow,text)
       }
+      updateRangeFrom(text){
+        this.displayRangeNow(this.rangeFromNow,text)
+      }
       displayRange(text){
         this.rangeValue.innerHTML=text;
       }
@@ -85,9 +88,8 @@ export class View {
       //--
       setStepWidth(min, max, step){
         this.stepWidth=this.rangeWrapper.clientWidth/((max-min)/step)
-        console.log( this.stepWidth + ' width')
       }
-      bindRangeToMove(handler, handl){
+      bindRangeToMove(handler, handl, arg){
 
         this.rangeTo.onpointerdown = (event)=> {
             event.preventDefault();
@@ -96,17 +98,13 @@ export class View {
             this.shiftX = event.pageX - this.rangeProgressBar.getBoundingClientRect().right;
             
             this.rangeTo.setPointerCapture(event.pointerId);
-            console.log(this.shiftX)
-            console.log(event.pageX)
-
           };
-          console.log(this)
+
           this.rangeTo.onpointerup = (event)=> {
             this.rangeTo.releasePointerCapture(event.pointerId);
             this.shiftX=undefined;
           };
           this.rangeTo.onpointermove = (event) =>{
-            console.log(this.shiftX)
             if(this.shiftX){
               
               let right = this.rangeWrapper.getBoundingClientRect().right+this.shiftX - event.clientX
@@ -123,20 +121,19 @@ export class View {
               this.rangeProgressBar.style.marginRight = right + 'px';
               
               //this.view.rangeToNow.innerHTML=
-              handler(this.rangeProgressBar.getBoundingClientRect().right/this.rangeWrapper.getBoundingClientRect().right,handl)
+              handler(this.rangeProgressBar.getBoundingClientRect().right/this.rangeWrapper.getBoundingClientRect().right, arg, handl)
             }
 
 };
         
           //this.view.rangeTo.ondragstart = () => false;
       }
-      bindRangeFromMove(handler, handl){
+      bindRangeFromMove(handler, handl, arg){
         this.rangeFrom.onpointerdown = (event)=> {
           event.preventDefault();
           this.shiftX = event.pageX - this.rangeProgressBar.getBoundingClientRect().left;
           this.rangeFrom.setPointerCapture(event.pointerId);
         };
-        console.log(this)
         this.rangeFrom.onpointerup = (event)=> {
           this.rangeFrom.releasePointerCapture(event.pointerId);
           this.shiftX=undefined;
@@ -151,16 +148,14 @@ export class View {
                 left = 0;
               }
               const rightEdge =this.rangeProgressBar.getBoundingClientRect().right-this.rangeWrapper.getBoundingClientRect().left-this.stepWidth
-              console.log(this.rangeProgressBar.clientWidth)
-              console.log(this.rangeProgressBar.getBoundingClientRect().right+'s')
-
+              
               if (left > rightEdge) {
                 left = rightEdge;
               }
               this.rangeProgressBar.style.marginLeft = left + 'px';
               
               //this.view.rangeToNow.innerHTML=
-              handler(this.rangeProgressBar.getBoundingClientRect().left/this.rangeWrapper.getBoundingClientRect().right,handl)
+              handler(this.rangeProgressBar.getBoundingClientRect().left/this.rangeWrapper.getBoundingClientRect().right, arg,handl)
             }
 
 };

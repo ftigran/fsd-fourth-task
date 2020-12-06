@@ -13,6 +13,8 @@ export class Model {
         isShowVal= true,
     }={}) {
         this.toValUpdated = new Event(this)
+        this.fromValUpdated = new Event(this)
+
         this.minVal = minVal;
         this.maxVal=maxVal;
         this.toVal=toVal;
@@ -35,10 +37,12 @@ export class Model {
     }
     set fromVal(arg){
         this._fromVal=arg;
+        this.fromValUpdated.notify()
     }
 
     getRange(){
         return this.fromVal+this.units+' - ' + this.toVal+this.units
+
     }
     getRangeTo(){
         return this.toVal+this.units
@@ -51,9 +55,9 @@ export class Model {
     calcValFormula(percent){
         return Math.ceil(percent*(this.maxVal-this.minVal)/this.step)*this.step+this.minVal;
     }
-    calcRangeToValue(percent, handler){
-        this.toVal=this.calcValFormula(percent)
-        handler(this.toVal)
+    calcRangeValue(percent, arg, handler){
+        this[arg]=this.calcValFormula(percent)
+        handler(this.getRange())
     }
   }
   
