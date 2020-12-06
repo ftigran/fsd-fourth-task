@@ -116,7 +116,7 @@ export class View {
               this.rangeProgressBar.style.marginRight = right + 'px';
               
               //this.view.rangeToNow.innerHTML=
-              handler(right/this.rangeBorder.offsetWidth,handl)
+              handler(this.rangeProgressBar.getBoundingClientRect().right/this.rangeWrapper.getBoundingClientRect().right,handl)
             }
 
 };
@@ -137,11 +137,7 @@ export class View {
           this.rangeFrom.onpointermove = (event) =>{
             if(this.shiftX){
               let left = event.clientX-this.rangeWrapper.getBoundingClientRect().left-this.shiftX
-              console.log(this.rangeBorder.getBoundingClientRect().left+' this.rangeBorder.getBoundingClientRect().left')
-              console.log(event.clientX+' event.clientX')
-              console.log(this.rangeBorder.getBoundingClientRect().left+' this.rangeBorder.getBoundingClientRect().left')
-  
-  
+
               document.getElementsByClassName('')
               // если указатель находится за пределами слайдера => отрегулировать "left", чтобы оставаться в пределах границ
               if (left < 0) {
@@ -154,7 +150,7 @@ export class View {
               this.rangeProgressBar.style.marginLeft = left + 'px';
               
               //this.view.rangeToNow.innerHTML=
-              handler(left/this.rangeBorder.offsetWidth,handl)
+              handler(this.rangeProgressBar.getBoundingClientRect().left/this.rangeWrapper.getBoundingClientRect().right,handl)
             }
 
 };
