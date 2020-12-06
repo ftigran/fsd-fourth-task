@@ -1,4 +1,4 @@
-import {View} from '../view/view'
+import {View} from '../view/view.js'
 import {Model} from '../model/model.js'
 
 export class Controller {
@@ -19,6 +19,8 @@ export class Controller {
       this.view = new View(arguments[0])
       this.init();
       this.bindChangeRangeTo()
+      this.view.bindChangeRangeToMove(this.model.calcRangeToValue.bind(this.model),this.view.displayRange.bind(this.view))
+      this.model.toValUpdated.attach(()=>this.view.updateRangeTo(this.model.getRange()))
     }
     init(){
         //this.view.displayRange(this.model.getRange())
@@ -31,44 +33,34 @@ export class Controller {
         this.view.displayRangeNow(rangeNow, this.model.getRangeNow(val))
         this.view.displayRange(this.model.getRange())
     }
-    
+    handlerPointerMove(){
+      //this.model.
+    }
     bindChangeRangeTo(){
         let shiftX;
         this.view.rangeTo.onpointerdown = function(event) {
+          this.eventOfRangeTo=event;
             event.preventDefault(); // prevent selection start (browser action)
-            shiftX = event.pageX - this.getBoundingClientRect().left;
-            console.log(shiftX +' shift')
+            shiftX = event.pageX - this.getBoundingClientRect().left-(this.clientWidth/2);
             this.setPointerCapture(event.pointerId);
+            console.log(this.eventOfRangeTo.pointerId)
           };
+          this.view.rangeTo.onpointerup = function(event) {
+            //this.eventOfRangeTo=event;
+              this.releasePointerCapture(event.pointerId);
+              console.log(event.pointerId)
+
+            };
           /*this.view.rangeTo.onpointerup = function(event) {
             this.releasePointerCapture(event.pointerId);
           };*/
-          this.view.rangeTo.onpointermove = (event) =>{
-            //let newWidth = event.clientX - shiftX - this.view.rangeProgressBar.getBoundingClientRect().left;
-            console.log(event.clientX)
-
-            let newWidth = event.clientX - shiftX - this.view.rangeBorder.getBoundingClientRect().left;
-            
-            // если указатель находится за пределами слайдера => отрегулировать "left", чтобы оставаться в пределах границ
-            if (newWidth < 0) {
-                newWidth = this.view.rangeTo.offsetWidth;
-            }
-            console.log(this.view.rangeBorder.offsetWidth  +' ww')
-
-            let rightEdge = this.view.rangeBorder.offsetWidth// - this.view.rangeTo.offsetWidth;
-            if (newWidth > rightEdge) {
-                newWidth = rightEdge;
-            }
-        console.log(rightEdge + 'assadsadasdasdqqqqww')
-        console.log(newWidth)
-            this.view.rangeProgressBar.style.width = newWidth + 'px';
-            
-            this.view.rangeToNow.innerHTML=Math.ceil(newWidth/this.view.rangeBorder.offsetWidth*(this.model.maxVal-this.model.minVal)/this.model.step)*this.model.step+this.model.minVal;
-          };
         
           this.view.rangeTo.ondragstart = () => false;
     }
+    
     /*onRangeChanged = () => {
         this.view.displayRange()
       }*/
+
+      //--
   }

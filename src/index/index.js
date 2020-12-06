@@ -3,6 +3,7 @@ import './index.scss'
 import {Controller} from '../modules/controller/controller.js'
 
 'use strict';
+
 let params = {
     minVal: 1000,
     maxVal:5000,

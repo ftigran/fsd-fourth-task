@@ -1,3 +1,5 @@
+import {Event} from '../event/event.js'
+
 export class Model {
     constructor({
         minVal= 100,
@@ -19,6 +21,7 @@ export class Model {
         this.isGorizontal= isGorizontal;
         this.isInterval= isInterval;
         this.isShowVal= isShowVal;
+        this.toValUpdated = new Event(this)
     }
     get toVal(){
         return this._toVal
@@ -41,4 +44,12 @@ export class Model {
     changeValue(){
 
     }
+
+    //--
+    calcRangeToValue(percent, handler){
+        this.toVal=Math.ceil(percent*(this.maxVal-this.minVal)/this.step)*this.step+this.minVal;
+        handler(this.toVal)
+        this.toValUpdated.notify()
+    }
   }
+  
