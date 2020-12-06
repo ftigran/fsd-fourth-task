@@ -22,6 +22,9 @@ export class View {
         this.isGorizontal= isGorizontal;
         this.isInterval= isInterval;
         this.isShowVal= isShowVal;*/
+        //let {minVal,maxVal}=arguments[0]
+
+
         //контейнер для бегунка
         this.container = this.getElement(rangeContainer)
         this.rangeSlider = this.createElement('div', 'range');
@@ -80,6 +83,10 @@ export class View {
         rangeNow.innerHTML  = text;
       }
       //--
+      setStepWidth(min, max, step){
+        this.stepWidth=this.rangeWrapper.clientWidth/((max-min)/step)
+        console.log( this.stepWidth + ' width')
+      }
       bindRangeToMove(handler, handl){
 
         this.rangeTo.onpointerdown = (event)=> {
@@ -109,10 +116,10 @@ export class View {
               if (right < 0) {
                   right = 0;
               }
-              /*let rightEdge =this.rangeBorder.clientWidth+((this.rangeBorder.offsetWidth-this.rangeBorder.clientWidth)/2)+this.rangeBorder.getBoundingClientRect().left -this.rangeProgressBar.getBoundingClientRect().left
-              if (right > rightEdge) {
-                  right = rightEdge;
-              }*/
+              let leftEdge =this.rangeWrapper.getBoundingClientRect().right-this.rangeProgressBar.getBoundingClientRect().left-this.stepWidth
+              if (right > leftEdge) {
+                  right = leftEdge;
+              }
               this.rangeProgressBar.style.marginRight = right + 'px';
               
               //this.view.rangeToNow.innerHTML=
@@ -143,10 +150,13 @@ export class View {
               if (left < 0) {
                 left = 0;
               }
-              /*let rightEdge =this.rangeProgressBar.getBoundingClientRect().left
+              const rightEdge =this.rangeProgressBar.getBoundingClientRect().right-this.rangeWrapper.getBoundingClientRect().left-this.stepWidth
+              console.log(this.rangeProgressBar.clientWidth)
+              console.log(this.rangeProgressBar.getBoundingClientRect().right+'s')
+
               if (left > rightEdge) {
                 left = rightEdge;
-              }*/
+              }
               this.rangeProgressBar.style.marginLeft = left + 'px';
               
               //this.view.rangeToNow.innerHTML=

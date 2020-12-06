@@ -16,6 +16,7 @@ export class Controller {
     }={}*/) {
       this.model = new Model(arguments[0])
       this.view = new View(arguments[0])
+      this.view.setStepWidth(this.model.minVal,this.model.maxVal,this.model.step)
       this.bindChangeRangeTo()
       this.view.bindRangeToMove(this.model.calcRangeToValue.bind(this.model),this.view.displayRange.bind(this.view))
       this.view.bindRangeFromMove(this.model.calcRangeToValue.bind(this.model),this.view.displayRange.bind(this.view))
