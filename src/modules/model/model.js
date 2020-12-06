@@ -12,6 +12,7 @@ export class Model {
         isInterval= true,
         isShowVal= true,
     }={}) {
+        this.toValUpdated = new Event(this)
         this.minVal = minVal;
         this.maxVal=maxVal;
         this.toVal=toVal;
@@ -21,7 +22,6 @@ export class Model {
         this.isGorizontal= isGorizontal;
         this.isInterval= isInterval;
         this.isShowVal= isShowVal;
-        this.toValUpdated = new Event(this)
     }
     get toVal(){
         return this._toVal
@@ -31,25 +31,29 @@ export class Model {
     }
     set toVal(arg){
         this._toVal=arg;
+        this.toValUpdated.notify()
     }
     set fromVal(arg){
         this._fromVal=arg;
     }
+
     getRange(){
         return this.fromVal+this.units+' - ' + this.toVal+this.units
     }
-    getRangeNow(ValNow){
-        return ValNow+this.units
+    getRangeTo(){
+        return this.toVal+this.units
     }
-    changeValue(){
-
+    getRangeFrom(){
+        return this.fromVal+this.units
     }
 
     //--
+    calcValFormula(percent){
+        return Math.ceil(percent*(this.maxVal-this.minVal)/this.step)*this.step+this.minVal;
+    }
     calcRangeToValue(percent, handler){
-        this.toVal=Math.ceil(percent*(this.maxVal-this.minVal)/this.step)*this.step+this.minVal;
+        this.toVal=this.calcValFormula(percent)
         handler(this.toVal)
-        this.toValUpdated.notify()
     }
   }
   

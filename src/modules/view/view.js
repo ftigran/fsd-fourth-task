@@ -24,8 +24,6 @@ export class View {
         this.isShowVal= isShowVal;*/
         //контейнер для бегунка
         this.container = this.getElement(rangeContainer)
-        console.log(this)
-        console.log(this.container+'dsasadasd')
         this.rangeSlider = this.createElement('div', 'range');
         this.rangeValue = this.createElement('p','range__value');
         this.rangeSlider.append(this.rangeValue);
@@ -74,13 +72,12 @@ export class View {
       }
       displayRange(text){
         this.rangeValue.innerHTML=text;
-        console.log(text)
       }
       displayRangeNow(rangeNow, text){
         rangeNow.innerHTML  = text;
       }
       //--
-      bindChangeRangeToMove(handler, handl){
+      bindRangeToMove(handler, handl){
         let shiftX = 0;
 /*let shiftX;
         this.rangeTo.onpointerdown = function(event) {
@@ -93,21 +90,57 @@ export class View {
           };*/
           this.rangeTo.onpointermove = (event) =>{
             //if(this.isHold)
-            let newWidth = event.clientX-this.rangeProgressBar.getBoundingClientRect().left-shiftX
+            let right = this.rangeBorder.getBoundingClientRect().right-shiftX - event.clientX
+            console.log( right)
             document.getElementsByClassName('')
             // если указатель находится за пределами слайдера => отрегулировать "left", чтобы оставаться в пределах границ
-            if (newWidth < 0) {
-                newWidth = this.model.rangeTo.offsetWidth;
+            if (right < 0) {
+                right = 0;
             }
-            let rightEdge =this.rangeBorder.clientWidth+((this.rangeBorder.offsetWidth-this.rangeBorder.clientWidth)/2)+this.rangeBorder.getBoundingClientRect().left -this.rangeProgressBar.getBoundingClientRect().left
-            if (newWidth > rightEdge) {
-                newWidth = rightEdge;
-            }
-            this.rangeProgressBar.style.width = newWidth + 'px';
+            /*let rightEdge =this.rangeBorder.clientWidth+((this.rangeBorder.offsetWidth-this.rangeBorder.clientWidth)/2)+this.rangeBorder.getBoundingClientRect().left -this.rangeProgressBar.getBoundingClientRect().left
+            if (right > rightEdge) {
+                right = rightEdge;
+            }*/
+            this.rangeProgressBar.style.marginRight = right + 'px';
             
             //this.view.rangeToNow.innerHTML=
-            console.log('val is change')
-            handler(newWidth/this.rangeBorder.offsetWidth,handl)
+            handler(right/this.rangeBorder.offsetWidth,handl)
+};
+        
+          //this.view.rangeTo.ondragstart = () => false;
+      }
+      bindRangeFromMove(handler, handl){
+        let shiftX = 30;
+/*let shiftX;
+        this.rangeTo.onpointerdown = function(event) {
+            event.preventDefault(); // prevent selection start (browser action)
+            shiftX = event.pageX - this.getBoundingClientRect().left-(this.clientWidth/2);
+            this.setPointerCapture(event.pointerId);
+          };
+          this.view.rangeTo.onpointerup = function(event) {
+            this.releasePointerCapture(event.pointerId);
+          };*/
+          this.rangeFrom.onpointermove = (event) =>{
+            //if(this.isHold)
+            let left = event.clientX-this.rangeBorder.getBoundingClientRect().left-((this.rangeBorder.offsetWidth-this.rangeBorder.clientWidth)/2)-shiftX
+            console.log(this.rangeBorder.getBoundingClientRect().left+' this.rangeBorder.getBoundingClientRect().left')
+            console.log(event.clientX+' event.clientX')
+            console.log(this.rangeBorder.getBoundingClientRect().left+' this.rangeBorder.getBoundingClientRect().left')
+
+
+            document.getElementsByClassName('')
+            // если указатель находится за пределами слайдера => отрегулировать "left", чтобы оставаться в пределах границ
+            if (left < 0) {
+              left = 0;
+            }
+            /*let rightEdge =this.rangeProgressBar.getBoundingClientRect().left
+            if (left > rightEdge) {
+              left = rightEdge;
+            }*/
+            this.rangeProgressBar.style.marginLeft = left + 'px';
+            
+            //this.view.rangeToNow.innerHTML=
+            handler(left/this.rangeBorder.offsetWidth,handl)
 };
         
           //this.view.rangeTo.ondragstart = () => false;
