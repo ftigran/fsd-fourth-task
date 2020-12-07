@@ -55,7 +55,9 @@ export class Model {
         this._toVal=arg;
         this.toValUpdated.notify()
     }
-
+    getPercentOfVal(val){
+        return (val-this.minVal)/(this.maxVal-this.minVal)
+    }
 
     getRangeTo(){
         return this.toVal+this.units

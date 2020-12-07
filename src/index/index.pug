@@ -10,6 +10,16 @@
                         span.range__now-value.js-value__to 10 000
 .container
   .range-1 Range 1
-  .range-here Range 2
-  .range-3 Range 3
+    .range__controls.controls
+        .controls__wrapper fromVal
+            input(type="number" placeholder=5)
+        .controls__wrapper toVal
+            input(type="number" placeholder=5)
+            .controls__wrapper minVal
+            input(type="number" placeholder=5)
+        .controls__wrapper maxVal
+            input(type="number" placeholder=5)
+
+  .range-here(style='width:100px') Range 2
+  .range-3(style='width:200px') Range 3 
 #root

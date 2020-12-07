@@ -27,16 +27,19 @@ export class Controller {
       this.model.toValUpdated.attach(()=>this.view.displayRange(this.model.getRange()))
 
       this.model.toVal=this.model.toVal
-
+      
+      //Инициализация положения toVal
+      this.view.setToVal(this.model.getPercentOfVal(this.model.toVal))
       if (this.model.isInterval){
       this.view.bindRangeFromMove(this.model.calcRangeValue.bind(this.model),this.view.displayRange.bind(this.view),'fromVal')
-console.log( 'ius inter')
       //Подписка на обновление значения "fromVal"
       this.model.fromValUpdated.attach(()=>this.view.updateRangeFrom(this.model.getRangeFrom()))
       this.model.fromValUpdated.attach(()=>this.view.displayRange(this.model.getRange()))
       
-      this.model.fromVal=this.model.fromVal        
+      this.model.fromVal=this.model.fromVal      
 
+      //Инициализация положения fromVal
+      this.view.setfromVal(this.model.getPercentOfVal(this.model.fromVal))
       }
     }
   }

@@ -92,6 +92,16 @@ export class View {
       setStepWidth(min, max, step){
         this.stepWidth=this.rangeWrapper.clientWidth/((max-min)/step)
       }
+
+      setToVal(percents){
+        this.rangeProgressBar.style.marginRight = (1-percents)*this.rangeWrapper.clientWidth + 'px';
+      }
+      setfromVal(percents){
+        this.rangeProgressBar.style.marginLeft = (percents)*this.rangeWrapper.clientWidth + 'px';
+      }
+
+
+      //binds
       bindRangeToMove(handler, handl, arg){
 
         this.rangeTo.onpointerdown = (event)=> {

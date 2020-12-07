@@ -20,8 +20,8 @@
     //box-sizing: content-box;
     border-radius: 3px;
     background-color: #fff;
-    width: 200px;
-    border-right: none;
+    //width: 200px;
+    border-right-width: 5px;
     //margin: 0 4px
   }
 
@@ -48,7 +48,7 @@
     background: rgba($color: #0e65e956, $alpha: 0.2); //linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
     cursor: pointer;
     position: absolute;
-    top: -5px;
+    top: -3px;
 
     &:hover {
       /*background: linear-gradient(
@@ -57,15 +57,20 @@
         lighten(#66d2ea, 12.5%) 100%
       );*/
       width: 60px;
-      //right: -30px;
       box-shadow: 0px 0px 3px 3px #6fcf97;
     }
   }
   &__from {
-    left: 0px;
+    left: -20px;
+    &:hover {
+      left: -30px;
+    }
   }
   &__to {
     right: -20px;
+    &:hover {
+      right: -30px;
+    }
   }
   &__now-value {
     position: absolute;
