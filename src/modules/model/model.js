@@ -1,4 +1,4 @@
-import {Event} from '../event/event.js'
+import {Event} from '../controller/event/event.js'
 
 export class Model {
     constructor({

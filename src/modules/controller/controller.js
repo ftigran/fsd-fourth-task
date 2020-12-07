@@ -18,28 +18,28 @@ export class Controller {
       this.view = new View(arguments[0])
 
       ///----need change
-      this.view.setStepWidth(this.model.minVal,this.model.maxVal,this.model.step)
+      this.view.viewBar.setStepWidth(this.model.minVal,this.model.maxVal,this.model.step)
 
-      this.view.bindRangeToMove(this.model.calcRangeValue.bind(this.model),this.view.displayRange.bind(this.view), 'toVal')
+      this.view.viewBar.bindRangeToMove(this.model.calcRangeValue.bind(this.model),this.view.viewBar.displayRange.bind(this.view.viewBar), 'toVal')
 
       //Подписка на обновление значения "ToVal"
-      if(this.view.isShowVal) this.model.toValUpdated.attach(()=>this.view.updateRangeTo(this.model.getRangeTo()))
-      this.model.toValUpdated.attach(()=>this.view.displayRange(this.model.getRange()))
+      if(this.view.isShowVal) this.model.toValUpdated.attach(()=>this.view.viewBar.updateRangeTo(this.model.getRangeTo()))
+      this.model.toValUpdated.attach(()=>this.view.viewBar.displayRange(this.model.getRange()))
 
       this.model.toVal=this.model.toVal
       
       //Инициализация положения toVal
-      this.view.setToVal(this.model.getPercentOfVal(this.model.toVal))
+      this.view.viewBar.setToVal(this.model.getPercentOfVal(this.model.toVal))
       if (this.model.isInterval){
-      this.view.bindRangeFromMove(this.model.calcRangeValue.bind(this.model),this.view.displayRange.bind(this.view),'fromVal')
+      this.view.viewBar.bindRangeFromMove(this.model.calcRangeValue.bind(this.model),this.view.viewBar.displayRange.bind(this.view.viewBar),'fromVal')
       //Подписка на обновление значения "fromVal"
-      if(this.view.isShowVal) this.model.fromValUpdated.attach(()=>this.view.updateRangeFrom(this.model.getRangeFrom()));
-      this.model.fromValUpdated.attach(()=>this.view.displayRange(this.model.getRange()))
+      if(this.view.viewBar.isShowVal) this.model.fromValUpdated.attach(()=>this.view.viewBar.updateRangeFrom(this.model.getRangeFrom()));
+      this.model.fromValUpdated.attach(()=>this.view.viewBar.displayRange(this.model.getRange()))
       
       this.model.fromVal=this.model.fromVal      
 
       //Инициализация положения fromVal
-      this.view.setfromVal(this.model.getPercentOfVal(this.model.fromVal))
+      this.view.viewBar.setfromVal(this.model.getPercentOfVal(this.model.fromVal))
       }
     }
   }
