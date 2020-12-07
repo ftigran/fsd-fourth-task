@@ -36,6 +36,16 @@ let firstSlider = new Controller({
     isShowVal: true,
 });
 let secondSlider = new Controller();
+let thirdSlider = new Controller({
+    rangeContainer: '.range-3',
+    minVal: 0,
+    maxVal:100,
+    toVal:50,
+    step: 5,
+    isGorizontal: true,
+    isInterval: false,
+    isShowVal: true,
+});
 
 //firstSlider.createElements(document.querySelector('.range-here'), 5000, 10000, '₽');
 

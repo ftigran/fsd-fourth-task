@@ -2,8 +2,6 @@ export class Event{
     constructor(sender){
         this.sender=sender;
         this.listeners= [];
-        console.log(sender)
-        console.log('is sender')
     }
     attach(listener) {
         this.listeners.push(listener);

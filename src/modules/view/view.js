@@ -8,8 +8,8 @@ export class View {
         fromVal=minVal,
         step= 100,
         units='₽',
-        isGorizontal= true,
-        isInterval= true,
+        isGorizontal= true,*/
+        isInterval= true,/*
         isShowVal= true,*/
     }={}){
         //this.rangeContainer=rangeContainer;
@@ -24,7 +24,7 @@ export class View {
         this.isShowVal= isShowVal;*/
         //let {minVal,maxVal}=arguments[0]
 
-
+        this.isInterval= isInterval;
         //контейнер для бегунка
         this.container = this.getElement(rangeContainer)
         this.rangeSlider = this.createElement('div', 'range');
@@ -39,18 +39,22 @@ export class View {
 
         this.rangeProgressBar = this.createElement('div','range__progress-bar');
 
-        this.rangeFrom = this.createElement('div','range__from');
-
-        this.rangeFromNow = this.createElement('span','range__now-value');
-        this.rangeFrom.append(this.rangeFromNow);
-
         this.rangeTo = this.createElement('div', 'range__to');
 
         this.rangeToNow = this.createElement('span', 'range__now-value');
-        //this.rangeToNow.innerHTML=this.toVal+this.units;
         this.rangeTo.append(this.rangeToNow);
 
-        this.rangeProgressBar.append(this.rangeFrom,this.rangeTo)
+        if(this.isInterval){
+          this.rangeFrom = this.createElement('div','range__from');
+
+          this.rangeFromNow = this.createElement('span','range__now-value');
+          this.rangeFrom.append(this.rangeFromNow);
+          this.rangeProgressBar.append(this.rangeFrom,this.rangeTo)
+          //this.rangeFromNow.innerHTML='asd'
+        }else {
+          this.rangeProgressBar.append(this.rangeTo)
+        }
+        
         this.rangeBorder.append(this.rangeWrapper)
         this.rangeWrapper.append(this.rangeProgressBar)
 
@@ -58,7 +62,6 @@ export class View {
         this.rangeSlider.append(this.rangeRange)
         this.container.append(this.rangeSlider);
 
-        //this.createElements()
     }
 
     createElement(tag, className) {

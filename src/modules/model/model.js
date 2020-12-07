@@ -13,37 +13,50 @@ export class Model {
         isShowVal= true,
     }={}) {
         this.toValUpdated = new Event(this)
-        this.fromValUpdated = new Event(this)
 
         this.minVal = minVal;
         this.maxVal=maxVal;
         this.toVal=toVal;
-        this.fromVal=fromVal;
         this.step= step;
         this.units= units;
         this.isGorizontal= isGorizontal;
         this.isInterval= isInterval;
         this.isShowVal= isShowVal;
+
+        if(this.isInterval) {
+            this.fromValUpdated = new Event(this)
+
+            this._fromVal=fromVal;
+            this.getRange= function(){
+                return this.fromVal+this.units+' - ' + this.toVal+this.units
+            }
+            Object.defineProperty(this, 'fromVal', {
+                get() {
+                    return this._fromVal
+                },
+              
+                set(arg) {
+                    console.log( this)
+                    this._fromVal=arg;
+                    this.fromValUpdated.notify()
+                }
+              })
+        }else {
+            this.getRange= function(){
+                return this.toVal+this.units
+            }
+        }
+
     }
     get toVal(){
         return this._toVal
-    }
-    get fromVal(){
-        return this._fromVal
     }
     set toVal(arg){
         this._toVal=arg;
         this.toValUpdated.notify()
     }
-    set fromVal(arg){
-        this._fromVal=arg;
-        this.fromValUpdated.notify()
-    }
 
-    getRange(){
-        return this.fromVal+this.units+' - ' + this.toVal+this.units
 
-    }
     getRangeTo(){
         return this.toVal+this.units
     }
@@ -51,7 +64,6 @@ export class Model {
         return this.fromVal+this.units
     }
 
-    //--
     calcValFormula(percent){
         return Math.ceil(percent*(this.maxVal-this.minVal)/this.step)*this.step+this.minVal;
     }
