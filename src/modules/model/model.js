@@ -21,7 +21,7 @@ export class Model {
         this.units= units;
         this.isGorizontal= isGorizontal;
         this.isInterval= isInterval;
-        this.isShowVal= isShowVal;
+        //this.isShowVal= isShowVal;
 
         if(this.isInterval) {
             this.fromValUpdated = new Event(this)

@@ -9,8 +9,8 @@ export class View {
         step= 100,
         units='₽',
         isGorizontal= true,*/
-        isInterval= true,/*
-        isShowVal= true,*/
+        isInterval= true,
+        isShowVal= true,
     }={}){
         //this.rangeContainer=rangeContainer;
         /*this.minVal = minVal;
@@ -21,9 +21,9 @@ export class View {
         this.units= units;
         this.isGorizontal= isGorizontal;
         this.isInterval= isInterval;
-        this.isShowVal= isShowVal;*/
+        */
         //let {minVal,maxVal}=arguments[0]
-
+        this.isShowVal= isShowVal;
         this.isInterval= isInterval;
         //контейнер для бегунка
         this.container = this.getElement(rangeContainer)
@@ -40,15 +40,18 @@ export class View {
         this.rangeProgressBar = this.createElement('div','range__progress-bar');
 
         this.rangeTo = this.createElement('div', 'range__to');
-
-        this.rangeToNow = this.createElement('span', 'range__now-value');
-        this.rangeTo.append(this.rangeToNow);
-
+        if(isShowVal){
+          this.rangeToNow = this.createElement('span', 'range__now-value');
+          this.rangeTo.append(this.rangeToNow);
+        }
+        
         if(this.isInterval){
           this.rangeFrom = this.createElement('div','range__from');
-
-          this.rangeFromNow = this.createElement('span','range__now-value');
-          this.rangeFrom.append(this.rangeFromNow);
+          if(isShowVal){
+            this.rangeFromNow = this.createElement('span','range__now-value');
+            this.rangeFrom.append(this.rangeFromNow);
+          }
+          
           this.rangeProgressBar.append(this.rangeFrom,this.rangeTo)
           //this.rangeFromNow.innerHTML='asd'
         }else {

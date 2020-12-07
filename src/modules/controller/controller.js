@@ -23,7 +23,7 @@ export class Controller {
       this.view.bindRangeToMove(this.model.calcRangeValue.bind(this.model),this.view.displayRange.bind(this.view), 'toVal')
 
       //Подписка на обновление значения "ToVal"
-      this.model.toValUpdated.attach(()=>this.view.updateRangeTo(this.model.getRangeTo()))
+      if(this.view.isShowVal) this.model.toValUpdated.attach(()=>this.view.updateRangeTo(this.model.getRangeTo()))
       this.model.toValUpdated.attach(()=>this.view.displayRange(this.model.getRange()))
 
       this.model.toVal=this.model.toVal
@@ -33,7 +33,7 @@ export class Controller {
       if (this.model.isInterval){
       this.view.bindRangeFromMove(this.model.calcRangeValue.bind(this.model),this.view.displayRange.bind(this.view),'fromVal')
       //Подписка на обновление значения "fromVal"
-      this.model.fromValUpdated.attach(()=>this.view.updateRangeFrom(this.model.getRangeFrom()))
+      if(this.view.isShowVal) this.model.fromValUpdated.attach(()=>this.view.updateRangeFrom(this.model.getRangeFrom()));
       this.model.fromValUpdated.attach(()=>this.view.displayRange(this.model.getRange()))
       
       this.model.fromVal=this.model.fromVal      
