@@ -4,7 +4,7 @@
   "description": "The fourth task as part of the training program of FSD",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "jest",
     "start": "webpack-dev-server --env development",
     "dev": "webpack --env development",
     "build": "webpack --env production"
@@ -29,24 +29,30 @@
     "url": "https://github.com/ftigran/fsd-fourth-task/issues"
   },
   "devDependencies": {
-    "mocha": "^8.1.3",
     "autoprefixer": "^9.8.6",
     "css-loader": "^4.2.1",
+    "eslint": "^7.15.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-fsd": "^1.0.1",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
+    "jest": "^26.6.3",
     "mini-css-extract-plugin": "^0.10.0",
+    "mocha": "^8.1.3",
     "node-sass": "^4.14.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "pug": "^3.0.0",
     "pug-loader": "^2.4.0",
-    "resolve-url-loader": "^3.1.1",
+    "resolve-url-loader": "^3.1.2",
     "sass-loader": "^9.0.3",
     "style-loader": "^1.2.1",
+    "ts-loader": "^8.0.12",
+    "typescript": "^4.1.3",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-merge": "^5.1.2",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.1.2"
   },
   "homepage": "https://github.com/ftigran/fsd-fourth-task#readme",
   "dependencies": {

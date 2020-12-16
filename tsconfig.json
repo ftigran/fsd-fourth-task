@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "outDir": "./dist/",
+      "noImplicitAny": true,
+      "removeComments": true,
+      //"module": "es6",
+      "target": "es5",
+      "allowJs": true,
+      "pretty": true,
+      "noFallthroughCasesInSwitch": true,
+      "strict": true,
+      "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    },
+      "exclude": [
+      "node_modules"
+    ]
+  }

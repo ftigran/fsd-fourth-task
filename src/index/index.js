@@ -2,6 +2,7 @@ import './index.scss'
 
 import {Controller} from '../modules/controller/controller.js'
 
+import './index.ts'
 'use strict';
 
 let params = {

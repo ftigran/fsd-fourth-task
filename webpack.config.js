@@ -2,6 +2,7 @@ const path = require('path')
 const {
     merge
 } = require('webpack-merge')
+const ts = require('./webpack/ts')
 const pug = require('./webpack/pug')
 const scss = require('./webpack/scss')
 const images = require('./webpack/images')
@@ -19,13 +20,13 @@ const PATHS = {
 }
 
 const common = merge([{
-        entry: {
-            'index': PATHS.source + '/index/index.js',
-        },
-        output: {
-            path: PATHS.build,
-            filename: 'js/[name].js'
-        },
+  entry: {
+    'index': PATHS.source + '/index/index.js',
+},
+  output: {
+    path: PATHS.build,
+    filename: 'js/[name].js'
+},
         optimization: {
             minimizer: [
                 new OptimizeCssAssetsWebpackPlugin({})
@@ -48,6 +49,7 @@ const common = merge([{
             })
         ]
     },
+    ts(),
     pug(),
     scss(),
     images(),
