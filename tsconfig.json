@@ -9,7 +9,7 @@
       "pretty": true,
       "noFallthroughCasesInSwitch": true,
       "strict": true,
-      "noUnusedLocals": true,
+      "noUnusedLocals": false,
     "noUnusedParameters": true,
     },
       "exclude": [

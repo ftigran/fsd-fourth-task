@@ -1,8 +1,9 @@
 import './index.scss'
 
 //import {Controller} from '../modules/controller/controller.js'
+import Controller from './index.ts'
 
-import './index.ts'
+//import './index.ts'
 'use strict';
 
 let params = {

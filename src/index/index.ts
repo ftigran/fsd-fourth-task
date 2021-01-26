@@ -1,5 +1,10 @@
 //import { View } from "../view/view.js";
+
+import { optimize } from "webpack";
+
 //import { Model } from "../model/model.js";
+
+const pluginOptions={class:'range'}
 
 class Controller {
     private model: Model;
@@ -11,12 +16,40 @@ class Controller {
       console.log(this.view);
     }
   }
+  export= Controller;
   class View {
+    private container:Element
+    private options:IOptions;
+    constructor(options: IOptions = defOptions) {
+      this.options=options;
+
+      this.container=this.getElement(options.rangeContainer)
+    }
+
+    createElement(tag:string, className?:string):HTMLElement {
+      const element = document.createElement(tag)
+
+      if (className) element.classList.add(className)
+
+      return element
+    }
     
-    constructor(options: IOptions = defOptions) {}
+    getElement(selector:string):Element {
+      const element = document.querySelector(selector)
+      if(element == null){
+        throw new Error(`Не удалось найти контейнер ${selector} для ползунка`)
+      }else
+      {
+        return element
+      }
+      
+    }
   }
   class Model {
-    constructor(options: IOptions = defOptions) {}
+    private options:IOptions;
+    constructor(options: IOptions = defOptions) {
+      this.options=options;
+    }
   }
   interface IOptions {
     rangeContainer:string,
@@ -45,11 +78,10 @@ class Controller {
     isShowVal: true,
   };
 
-  type Listener=any;
+type Listener=any;
 type Sender=any;
-  class EventListener{
-      
 
+  class EventListener{
 
       private sender:Sender;
       private listeners: Listener[];
@@ -66,3 +98,7 @@ type Sender=any;
         }
     }
 }
+function sum(a:number, b:number) {
+  return a + b;
+}
+module.exports=sum;
