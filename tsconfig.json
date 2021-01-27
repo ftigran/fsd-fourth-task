@@ -11,6 +11,7 @@
       "strict": true,
       "noUnusedLocals": false,
     "noUnusedParameters": true,
+    
     },
       "exclude": [
       "node_modules"
