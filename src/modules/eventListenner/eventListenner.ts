@@ -1,7 +1,7 @@
 type Listener=any;
 type Sender=any;
 
-  class EventListener{
+  export class EventListener{
 
       private sender:Sender;
       private listeners: Listener[];

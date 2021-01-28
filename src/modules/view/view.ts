@@ -1,5 +1,5 @@
 import {createElement,getElement} from '../ElementFunctions/ElementFunctions'
-import {IOptions} from '../options/options'
+import {IOptionsWithDef} from '../options/options'
 import {ViewBar} from './viewBar/viewBar'
 
 export class View {
@@ -8,8 +8,8 @@ export class View {
     private rangeRange:Element
     private viewBar:ViewBar
 
-    private options:IOptions;
-    constructor(options: IOptions) {
+    private options:IOptionsWithDef;
+    constructor(options: IOptionsWithDef) {
       this.options=options;
 
       this.container=getElement(options.rangeContainer)
@@ -24,4 +24,3 @@ export class View {
         this.container.append(this.rangeSlider);
     }
   }
-  module.exports=View
