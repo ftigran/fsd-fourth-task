@@ -7,7 +7,7 @@
     "test": "{src,test}/*.ts"
   },
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest",
     "start": "webpack-dev-server --env development",
     "dev": "webpack --env development",
     "build": "webpack --env production"
